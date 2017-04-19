@@ -5,6 +5,9 @@ It can generate a matplotlib animation movie (mp4, gif, etc.)
 
 This tool use "convert" command of ImageMagick.
 
+# Sample gif
+
+![matplotrecorder/animation.gif at master · AtsushiSakai/matplotrecorder](https://github.com/AtsushiSakai/matplotrecorder/blob/master/animation.gif)
 
 # Requrements
 
@@ -40,6 +43,7 @@ A sample code:
 
           matplotrecorder.save_frame()  # save each frame
 
+      # generate movie
       matplotrecorder.save_movie("animation.mp4", 0.1)
       #  matplotrecorder.save_movie("animation.gif", 0.1) #gif is ok.
 
