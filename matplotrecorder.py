@@ -1,5 +1,7 @@
 """
- A simple Python modle for recording matplotlib animation
+ A simple Python module for recording matplotlib animation
+
+ This tool use convert command of ImageMagick
 
  author: Atsushi Sakai
 """
@@ -16,27 +18,15 @@ def save_frame():
     """
     global iframe
 
-    plt.savefig("recoder" + str(iframe) + '.png')
+    plt.savefig("recoder" + '{0:04d}'.format(iframe) + '.png')
     iframe += 1
 
 
-def save_movie_mp4(fname, d_pause):
-    """
-    Save movie as mp4
-    """
-    cmd = "ffmpeg -f image2 -r " + str(1.0 / d_pause) + \
-        " -i recoder%01d.png -vcodec mpeg4 -y " + fname
-    subprocess.call(cmd, shell=True)
-
-    cmd = "rm recoder*.png"
-    subprocess.call(cmd, shell=True)
-
-
-def save_movie_gif(fname, d_pause):
+def save_movie(fname, d_pause):
     """
     Save movie as gif
     """
-    cmd = "convert " + \
+    cmd = "convert -delay " + str(int(d_pause * 100)) + \
         " recoder*.png " + fname
     subprocess.call(cmd, shell=True)
     cmd = "rm recoder*.png"
@@ -47,7 +37,7 @@ if __name__ == '__main__':
     print("A sample recording start")
     import math
 
-    time = range(10)
+    time = range(50)
 
     x1 = [math.cos(t / 10.0) for t in time]
     y1 = [math.sin(t / 10.0) for t in time]
@@ -62,5 +52,5 @@ if __name__ == '__main__':
 
         save_frame()  # save each frame
 
-    #  save_movie_mp4("animation.mp4", 0.1)
-    save_movie_gif("animation.gif", 0.1)
+    save_movie("animation.gif", 0.1)
+    #  save_movie("animation.mp4", 0.1)
