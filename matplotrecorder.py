@@ -10,27 +10,30 @@ import matplotlib.pyplot as plt
 import subprocess
 
 iframe = 0
+donothing = False  # switch to stop all recordering
 
 
 def save_frame():
     """
     Save a frame for movie
     """
-    global iframe
 
-    plt.savefig("recoder" + '{0:04d}'.format(iframe) + '.png')
-    iframe += 1
+    if not donothing:
+        global iframe
+        plt.savefig("recoder" + '{0:04d}'.format(iframe) + '.png')
+        iframe += 1
 
 
 def save_movie(fname, d_pause):
     """
     Save movie as gif
     """
-    cmd = "convert -delay " + str(int(d_pause * 100)) + \
-        " recoder*.png " + fname
-    subprocess.call(cmd, shell=True)
-    cmd = "rm recoder*.png"
-    subprocess.call(cmd, shell=True)
+    if not donothing:
+        cmd = "convert -delay " + str(int(d_pause * 100)) + \
+            " recoder*.png " + fname
+        subprocess.call(cmd, shell=True)
+        cmd = "rm recoder*.png"
+        subprocess.call(cmd, shell=True)
 
 
 if __name__ == '__main__':
