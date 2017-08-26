@@ -4,6 +4,21 @@
  This tool use convert command of ImageMagick
 
  author: Atsushi Sakai
+
+ How to use:
+
+ - import
+
+    from matplotrecorder import matplotrecorder
+
+ - save file
+
+    matplotrecorder.save_frame()
+
+ - generate movie
+
+    matplotrecorder.save_movie("animation.gif", 0.1)
+
 """
 
 import matplotlib.pyplot as plt
