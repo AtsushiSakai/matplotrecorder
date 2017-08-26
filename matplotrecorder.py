@@ -24,13 +24,18 @@ def save_frame():
         iframe += 1
 
 
-def save_movie(fname, d_pause):
+def save_movie(fname, d_pause, monitor=True):
     """
     Save movie as gif
     """
     if not donothing:
-        cmd = "convert -delay " + str(int(d_pause * 100)) + \
-            " recoder*.png " + fname
+        if monitor:
+            cmd = "convert -monitor -delay " + str(int(d_pause * 100)) + \
+                " recoder*.png " + fname
+        else:
+            cmd = "convert -delay " + str(int(d_pause * 100)) + \
+                " recoder*.png " + fname
+
         subprocess.call(cmd, shell=True)
         cmd = "rm recoder*.png"
         subprocess.call(cmd, shell=True)
