@@ -41,16 +41,20 @@ def save_frame():
 
 def save_movie(fname, d_pause, monitor=True):
     """
-    Save movie as gif
+    Save movie
     """
     if not donothing:
         if monitor:
+            #  cmd = "ffmpeg -framerate " + \
+            #  str(int(d_pause * 100)) + \
+            #  " -i recoder%04d.png " + fname
             cmd = "convert -monitor -delay " + str(int(d_pause * 100)) + \
-                " recoder*.png " + fname
+                " -resize 640x480 recoder*.png " + fname
         else:
             cmd = "convert -delay " + str(int(d_pause * 100)) + \
-                " recoder*.png " + fname
+                " -resize 640x480 recoder*.png " + fname
 
+        print(cmd)
         subprocess.call(cmd, shell=True)
         cmd = "rm recoder*.png"
         subprocess.call(cmd, shell=True)
