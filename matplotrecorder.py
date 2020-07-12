@@ -28,14 +28,19 @@ iframe = 0
 donothing = False  # switch to stop all recordering
 
 
-def save_frame():
+def save_frame(skip=None):
     """
     Save a frame for movie
     """
 
     if not donothing:
         global iframe
-        plt.savefig("recoder" + '{0:04d}'.format(iframe) + '.png')
+        if skip is not None:
+            if iframe % skip == 0:
+                plt.savefig(
+                    "recoder" + '{0:04d}'.format(iframe) + '.png')
+        else:
+            plt.savefig("recoder" + '{0:04d}'.format(iframe) + '.png')
         iframe += 1
 
 
