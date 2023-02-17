@@ -23,7 +23,7 @@ And then, call savemovie() for movie generation.
 A sample code:
 
 
-      import matplotrecorder
+      from matplotrecorder import capture
 
       print("A sample recording start")
       import math
@@ -41,11 +41,11 @@ A sample code:
           plt.axis("equal")
           plt.pause(0.1)
 
-          matplotrecorder.save_frame()  # save each frame
+          capture.save_frame()  # save each frame
 
       # generate movie
       matplotrecorder.save_movie("animation.mp4", 0.1)
-      #  matplotrecorder.save_movie("animation.gif", 0.1) #gif is ok.
+      #  capture.save_movie("animation.gif", 0.1) #gif is ok.
 
 
 
